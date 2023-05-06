@@ -7,8 +7,16 @@
 </template>
 
 <script>
-
+  import axios from 'axios';
   export default {
+    created() {
+      const url = "https://fakestoreapi.com/products";
+      
+      axios
+      .get(url)
+      .then((response)=>console.log(response.data))
+      .catch((error)=>console.error(error));
+    }
 
   }
   
