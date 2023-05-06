@@ -29,13 +29,15 @@
 export default {
   name: 'HomePage',
   data() {
-    return {
-      products: this.$store.state.products
+  },
+
+  computed: {
+    products() {
+      return this.$store.state.products
     }
   },
 
   methods: {
-   
   }
 }
 </script>
