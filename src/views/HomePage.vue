@@ -8,7 +8,7 @@
         class="product">
         <div class="product-image" :style="{ backgroundImage: 'url(' + product.image + ')' }"></div>
         <h4>{{ product.title }}</h4>
-        <p class="price">US$ {{ product.price }}</p>
+        <p class="price">US$ {{ product.price.toFixed(2) }}</p>
         <button>Add to bag</button>
       </div>
 
