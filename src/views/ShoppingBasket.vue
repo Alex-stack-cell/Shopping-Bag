@@ -1,6 +1,6 @@
 <template>
   <div class="basket">
-    <div class="items">
+    <div class="items" v-if="productsInBag.length > 0">
 
       <div class="item"
         v-for="(productInBag, index) in productsInBag"
@@ -11,16 +11,19 @@
         <div class="description">{{ productInBag.title }}</div>
         <div class="price">
           <span class="quantity-area">
-            <button disabled="">-</button>
-            <span class="quantity">1</span>
-            <button>+</button>
+            <button 
+              :disabled="productInBag.quantity <= 1" 
+              @click="productInBag.quantity--">-</button>
+            <span class="quantity">{{ productInBag.quantity }}</span>
+            <button @click="productInBag.quantity++">+</button>
           </span>
-          <span class="amount">US$ {{ productInBag.price }}</span>
+          <span class="amount">US$ {{ (productInBag.price * productInBag.quantity).toFixed(2) }}</span>
         </div>
       </div>
       <div class="grand-total"> Grand Total: US$ 22.30</div>
 
     </div>
+    <p v-else>You have no article in your bag.</p>
   </div>
 </template>
 
