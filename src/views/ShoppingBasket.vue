@@ -22,7 +22,7 @@
           <span class="amount">US$ {{ (productInBag.price * productInBag.quantity).toFixed(2) }}</span>
         </div>
       </div>
-      <div class="grand-total"> Grand Total: US$ 22.30</div>
+      <div class="grand-total"> Grand Total: US$ {{ orderTotal() }}</div>
 
     </div>
     <h4 v-else>No items in bag yet.</h4>
@@ -38,7 +38,15 @@ export default {
   methods: {
     removeFromBag(productId) {
     this.$store.dispatch('removeFromBag', productId)
-  }
+    },
+    orderTotal() {
+      var total = 0;
+      this.productsInBag.forEach(item => {
+        total += item.price * item.quantity;
+      });
+
+      return total.toFixed(2);
+    }
   },
   computed: mapState([
     'productsInBag',
