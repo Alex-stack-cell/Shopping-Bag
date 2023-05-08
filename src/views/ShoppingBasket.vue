@@ -6,7 +6,9 @@
         v-for="(productInBag, index) in productsInBag"
         :key="index"
       >
-        <div class="remove">Remove item</div>
+        <div 
+          class="remove"
+          @click="removeFromBag(productInBag.id)">Remove item</div>
         <div class="photo"><img :src="productInBag.image" alt=""></div>
         <div class="description">{{ productInBag.title }}</div>
         <div class="price">
@@ -23,7 +25,7 @@
       <div class="grand-total"> Grand Total: US$ 22.30</div>
 
     </div>
-    <p v-else>You have no article in your bag.</p>
+    <h4 v-else>No items in bag yet.</h4>
   </div>
 </template>
 
@@ -34,12 +36,13 @@ export default {
   name: 'ShoppingBasket',
 
   methods: {
-   
+    removeFromBag(productId) {
+    this.$store.dispatch('removeFromBag', productId)
+  }
   },
   computed: mapState([
     'productsInBag',
-  ])
- 
+  ]),
 }
 </script>
 
